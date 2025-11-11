@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Öffne App…</title>
+</head>
+<body>
+  <p>Öffne App…</p>
+  <script>
+    (function () {
+      // Supabase hängt Tokens im Fragment (#...) an
+      var h = location.hash || "";
+      if (!h) {
+        document.body.append(" (kein Token)");
+        return;
+      }
+      var target = "spielerboerse://auth-callback" + h;
+      // sofort versuchen
+      location.href = target;
+      // Fallback-Link anzeigen
+      var a = document.createElement("a");
+      a.href = target;
+      a.textContent = "App jetzt öffnen";
+      a.style.display = "inline-block";
+      a.style.marginTop = "1rem";
+      document.body.appendChild(a);
+    })();
+  </script>
+</body>
+</html>
