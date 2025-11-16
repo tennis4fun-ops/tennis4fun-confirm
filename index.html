@@ -1,31 +1,30 @@
 <!doctype html>
 <html lang="de">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Öffne App…</title>
-</head>
-<body>
-  <p>Öffne App…</p>
-  <script>
-    (function () {
-      // Supabase hängt Tokens im Fragment (#...) an
-      var h = location.hash || "";
-      if (!h) {
-        document.body.append(" (kein Token)");
-        return;
+  <head>
+    <meta charset="utf-8" />
+    <title>Registrierung</title>
+  </head>
+  <body>
+    <h1>Registrierung</h1>
+    <p id="msg">Bitte warten…</p>
+
+    <script>
+      const hash = window.location.hash;           // z.B. #access_token=...&type=signup&...
+      const params = new URLSearchParams(hash.substring(1));
+      const type = params.get("type");
+      const error = params.get("error_description");
+
+      const msgEl = document.getElementById("msg");
+
+      if (type === "signup" && !error) {
+        msgEl.textContent = "Ihre Anmeldung war erfolgreich. Sie können die App jetzt starten.";
+
+        // Optional: auf dem Handy still versuchen, die App zu öffnen
+        // (kein sichtbarer Link nötig)
+        window.location.href = "spielerboerse://auth-callback" + hash;
+      } else {
+        msgEl.textContent = "Die Bestätigung ist fehlgeschlagen oder der Link ist ungültig.";
       }
-      var target = "spielerboerse://auth-callback" + h;
-      // sofort versuchen
-      location.href = target;
-      // Fallback-Link anzeigen
-      var a = document.createElement("a");
-      a.href = target;
-      a.textContent = "App jetzt öffnen";
-      a.style.display = "inline-block";
-      a.style.marginTop = "1rem";
-      document.body.appendChild(a);
-    })();
-  </script>
-</body>
+    </script>
+  </body>
 </html>
