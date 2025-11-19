@@ -136,7 +136,7 @@ Diese Datenschutzerklärung kann gelegentlich angepasst werden, z. B. wenn sich 
 
 Die jeweils aktuelle Version ist unter folgender URL abrufbar:
 
-\<URL, unter der diese Datei später öffentlich erreichbar ist, z. B. https://dein-name.github.io/tennis4fun-privacy/>
+https://github.com/tennis4fun-ops/tennis4fun-confirm/blob/main/privacy-policy.md
 
 ---
 
